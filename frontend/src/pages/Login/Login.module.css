@@ -55,3 +55,7 @@ button {
   align-items: center;
   gap: 1rem;
 }
+
+.error{
+    color: red;
+}
