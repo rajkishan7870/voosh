@@ -1,0 +1,14 @@
+{
+  "name": "voosh",
+  "version": "1.0.0",
+  "description": "trello clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kishan Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
