@@ -1,0 +1,57 @@
+.loginParent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 50%;
+  padding-top: 1rem;
+}
+
+.outerDivLogin {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+h2 {
+  color: blue;
+}
+
+input {
+  padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+}
+
+button {
+  background-color: blue;
+  padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+  color: beige;
+  border: none;
+  cursor: pointer;
+}
+
+.redirectSignUp{
+    text-decoration: none;
+}
+
+.googleBtn {
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.loginForm {
+  border: 2px solid blue;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 80%;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.loginFooter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
