@@ -1,0 +1,28 @@
+.parentDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding-left: 1%;
+    background-color: blue;
+}
+
+.eventIcon{
+    color: white;
+    font-size: x-large;
+}
+
+.btnParent{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding-right: 1%;
+}
+
+.button{
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: white;
+    color: blue;
+    border-radius: 5px;
+    cursor: pointer;
+}
