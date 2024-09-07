@@ -2,7 +2,7 @@ const { getUser } = require("../service/auth");
 
 
 async function checkAuthForProfile(req, res, next) {
-  const tokenFromCookies = req?.headers.authorization.split("Bearer ")[1]
+  const tokenFromCookies = req?.headers.cookie.split("token=")[1]
   const user = getUser(tokenFromCookies)
   if (!user) {
     res.status(401).json({

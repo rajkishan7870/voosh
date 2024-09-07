@@ -1,0 +1,28 @@
+.searchParent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: rgb(247, 245, 245);
+    padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+}
+
+.homeParent{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 1rem 1rem 1rem;
+}
+
+button{
+   width: fit-content; 
+   border-radius: 5px;
+}
+
+.cardParent{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

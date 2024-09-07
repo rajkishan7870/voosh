@@ -1,0 +1,14 @@
+.addTaskParent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.addTaskInput{
+    width: 80%;
+}
+
+.addTaskBtn{
+    width: 10%;
+}
