@@ -5,6 +5,7 @@ const interactionSchema = new mongoose.Schema(
     title: { type: "string", required: true },
     card: {type: "string"},
     description: {type: "string"},
+    updatedAt: {type: "date"},
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",

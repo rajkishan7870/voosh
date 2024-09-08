@@ -7,6 +7,7 @@ const addNewTask = async (req, res) => {
 
   const interaction = await InteractionModel.create({
     title: req.body.title,
+    description: "",
     card: "TODO",
     createdBy: req.user._id,
   });
@@ -74,7 +75,25 @@ const deleteTask = async (req, res) => {
     title: req.body.title,
   });
 
-  res.status(201).json({message: "Deleted Successfully"});
+  res.status(201).json({ message: "Deleted Successfully" });
+};
+
+const editDetails = async (req, res) => {
+  console.log(req.body);
+
+  if (req.body?.title || req.body?.description) {
+    await InteractionModel.updateOne({ _id: req.body._id },
+      {                  
+        $set: {
+          title: req.body?.title,
+          description: req.body?.description,
+          updatedAt: Date.now()
+        }
+      })
+    
+  }
+
+  res.status(201).json({ message: "Updated Successfully" });
 };
 
 module.exports = {
@@ -83,4 +102,5 @@ module.exports = {
   getAllInProgressTask,
   getAllDoneTask,
   deleteTask,
+  editDetails,
 };
