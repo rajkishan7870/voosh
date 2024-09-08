@@ -92,7 +92,7 @@ export default function Signup() {
             <div className={style.signupFooter}>
               <p>
                 Already have an account?{" "}
-                <Link className={style.redirectLogin} to="/login">
+                <Link className={style.redirectLogin} to="/">
                   Login
                 </Link>
               </p>

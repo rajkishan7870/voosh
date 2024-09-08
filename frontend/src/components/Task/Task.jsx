@@ -11,6 +11,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { interaction_data } from "../../Recoil/interaction";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -25,7 +27,8 @@ export default function Task(props) {
   const [openEdit, setOpenEdit] = React.useState(false);
   const [details, setDetails] = useState({});
   const [openView, setOpenView] = useState(false);
-  const [editDetails, setEditDetails] = useState()
+  const [editDetails, setEditDetails] = useState();
+  const[draggedTask, setDraggedTask] = useRecoilState(interaction_data)
 
   const handleClose = () => {
     setOpenEdit(false);
@@ -45,14 +48,14 @@ export default function Task(props) {
     setOpenEdit(true);
     setDetails(ele);
     setEditDetails({
-      _id: ele?._id
-    })
+      _id: ele?._id,
+    });
   };
 
   useEffect(() => {
     console.log(details);
   }, [details]);
-  
+
   useEffect(() => {
     console.log(editDetails);
   }, [editDetails]);
@@ -64,23 +67,35 @@ export default function Task(props) {
   };
 
   const handleEditSave = () => {
-    console.log(editDetails)
     axios
       .patch("/api/interaction/update", editDetails)
-      .then((res)=>{
-        console.log(res)
+      .then((res) => {
+        console.log(res);
         props.handleTaskChange();
-        setOpenEdit(false)
+        setOpenEdit(false);
       })
-      .catch(err=>console.log(err))
+      .catch((err) => console.log(err));
   };
+
+  const handleDrag = (e, ele) => {
+    const draggedTaskData = { id: ele?._id };
+    setDraggedTask(draggedTaskData)
+  };
+
+  console.log(props.task)
+
 
   return (
     <>
       {props.task &&
-        props.task.map((ele, index) => {
+        props?.task.map((ele, index) => {
           return (
-            <div className={style.taskParent} key={index} draggable>
+            <div
+              className={style.taskParent}
+              key={index}
+              draggable
+              onDrag={(e) => handleDrag(e, ele)}
+            >
               <h2>{ele.title}</h2>
               <div className={style.descDiv}>{ele.description}</div>
               <div>Created at: {ele.createdAt}</div>
@@ -135,7 +150,10 @@ export default function Task(props) {
                         defaultValue={details?.title}
                         name="title"
                         onChange={(e) => {
-                          setEditDetails({ ...editDetails, [e.target.name]: e.target.value });
+                          setEditDetails({
+                            ...editDetails,
+                            [e.target.name]: e.target.value,
+                          });
                         }}
                       />
                       <Typography gutterBottom>Description</Typography>
@@ -145,7 +163,10 @@ export default function Task(props) {
                         name="description"
                         defaultValue={details?.description}
                         onChange={(e) => {
-                          setEditDetails({ ...editDetails, [e.target.name]: e.target.value });
+                          setEditDetails({
+                            ...editDetails,
+                            [e.target.name]: e.target.value,
+                          });
                         }}
                       />
                     </DialogContent>

@@ -15,7 +15,7 @@ const addNewTask = async (req, res) => {
   if (interaction) {
     res.status(201).json(interaction);
   } else {
-    res.status(401).json({ message: "Failed to create Task" });
+    res.status(201).json({ message: "Failed to create Task" });
   }
 };
 
@@ -31,7 +31,7 @@ const getAllTodoTask = async (req, res) => {
   if (allTodo.length > 0) {
     res.status(200).json(allTodo);
   } else {
-    res.status(404).json({ message: "No TODO tasks found" });
+    res.status(201).json({ message: "No TODO tasks found" });
   }
 };
 
@@ -39,15 +39,15 @@ const getAllInProgressTask = async (req, res) => {
   console.log(req.body);
   console.log(req.user);
 
-  let allTodo = await InteractionModel.find({
+  let allInProgress = await InteractionModel.find({
     card: "IN PROGRESS",
     createdBy: req.user._id,
   });
 
-  if (allTodo.length > 0) {
-    res.status(200).json(allTodo);
+  if (allInProgress.length > 0) {
+    res.status(200).json(allInProgress);
   } else {
-    res.status(404).json({ message: "No In Progress tasks found" });
+    res.status(201).json({ message: "No In Progress tasks found" });
   }
 };
 
@@ -55,15 +55,15 @@ const getAllDoneTask = async (req, res) => {
   console.log(req.body);
   console.log(req.user);
 
-  let allTodo = await InteractionModel.find({
+  let allDone = await InteractionModel.find({
     card: "DONE",
     createdBy: req.user._id,
   });
 
-  if (allTodo.length > 0) {
-    res.status(200).json(allTodo);
+  if (allDone.length > 0) {
+    res.status(200).json(allDone);
   } else {
-    res.status(404).json({ message: "No Done tasks found" });
+    res.status(201).json({ message: "No Done tasks found" });
   }
 };
 
@@ -96,6 +96,23 @@ const editDetails = async (req, res) => {
   res.status(201).json({ message: "Updated Successfully" });
 };
 
+
+const dragTask = async (req, res)=>{
+  console.log(req.body)
+  if (req.body._id){
+  await InteractionModel.updateOne({ _id: req.body._id },
+    {                  
+      $set: {
+        card: req.body.card
+      }
+    })
+    res.status(201).json({ message: "Dropped Successfully" });
+  }
+  else{
+    res.status(201).json({message: "Not Dropped"})
+  }
+}
+
 module.exports = {
   addNewTask,
   getAllTodoTask,
@@ -103,4 +120,5 @@ module.exports = {
   getAllDoneTask,
   deleteTask,
   editDetails,
+  dragTask,
 };
