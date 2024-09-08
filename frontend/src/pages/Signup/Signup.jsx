@@ -33,7 +33,7 @@ export default function Signup() {
     axios.post("/api/user/signup", userData, config).then((response) => {
       console.log(response.status);
     });
-    navigate("/login");
+    navigate("/");
   }
 
   return (
