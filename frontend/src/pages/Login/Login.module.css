@@ -25,6 +25,7 @@ button {
   background-color: blue;
   padding: 0.4rem 0.4rem 0.4rem 0.4rem;
   color: beige;
+  width: 100%;
   border: none;
   cursor: pointer;
 }
@@ -54,4 +55,8 @@ button {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.error{
+    color: red;
 }
